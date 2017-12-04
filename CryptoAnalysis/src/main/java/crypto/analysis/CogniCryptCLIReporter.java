@@ -103,4 +103,10 @@ public class CogniCryptCLIReporter extends CrySLAnalysisListener {
 		
 	}
 
+	@Override
+	public void unevaluableConstraint(AnalysisSeedWithSpecification seed, ISLConstraint con, StmtWithMethod location) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

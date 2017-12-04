@@ -8,6 +8,8 @@ public interface ConstraintReporter {
 
 	public void constraintViolated(ISLConstraint con, StmtWithMethod unit);
 	
+	public void unevaluableConstraint(ISLConstraint con, StmtWithMethod unit);
+	
 	void callToForbiddenMethod(ClassSpecification classSpecification, Unit callSite);
 
 }

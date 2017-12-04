@@ -50,6 +50,27 @@ public class UsagePatternTest extends UsagePatternTestingFramework{
 	}
 	
 	@Test
+	public void UsagePatternTestWrongOffsetSize() throws GeneralSecurityException {
+		KeyGenerator keygen = KeyGenerator.getInstance("AES");
+		Assertions.extValue(0);
+		keygen.init(128);
+		Assertions.extValue(0);
+		SecretKey key = keygen.generateKey();
+		Assertions.hasEnsuredPredicate(key);
+		Assertions.mustBeInAcceptingState(keygen);
+		Cipher cCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		Assertions.extValue(0);
+		cCipher.init(Cipher.ENCRYPT_MODE, key);
+		
+		Assertions.extValue(0);
+		final byte[] bytes = "".getBytes();
+		byte[] encText = cCipher.doFinal(bytes, 200, bytes.length);
+		Assertions.hasEnsuredPredicate(encText);
+		Assertions.mustBeInAcceptingState(cCipher);
+		cCipher.getIV();
+	}
+	
+	@Test
 	public void UsagePatternTest1SilentForbiddenMethod() throws GeneralSecurityException {
 		KeyGenerator keygen = KeyGenerator.getInstance("AES");
 		Assertions.extValue(0);

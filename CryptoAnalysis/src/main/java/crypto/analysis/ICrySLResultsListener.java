@@ -38,6 +38,8 @@ public interface ICrySLResultsListener extends ResultReporter<TypestateDomainVal
 
 	void constraintViolation(AnalysisSeedWithSpecification analysisSeedWithSpecification, ISLConstraint con, StmtWithMethod unit);
 
+	void unevaluableConstraint(AnalysisSeedWithSpecification seed, ISLConstraint con, StmtWithMethod location);
+	
 	void checkedConstraints(AnalysisSeedWithSpecification analysisSeedWithSpecification, Collection<ISLConstraint> relConstraints);
 	
 	void onSeedTimeout(IFactAtStatement seed);

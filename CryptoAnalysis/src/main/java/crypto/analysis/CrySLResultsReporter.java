@@ -171,4 +171,10 @@ public class CrySLResultsReporter  {
 		}
 	}
 	
+	public void unevaluableConstraint(AnalysisSeedWithSpecification classSpecification, ISLConstraint con, StmtWithMethod stmt) {
+		for (CrySLAnalysisListener listen : listeners) {
+			listen.unevaluableConstraint(classSpecification, con, stmt);
+		}
+	}
+	
 }

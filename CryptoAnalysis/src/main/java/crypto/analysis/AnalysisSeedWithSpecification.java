@@ -120,6 +120,11 @@ public class AnalysisSeedWithSpecification extends IAnalysisSeed {
 			public void callToForbiddenMethod(ClassSpecification classSpecification, Unit callSite) {
 				cryptoScanner.getAnalysisListener().callToForbiddenMethod(classSpecification, new StmtWithMethod(callSite, cryptoScanner.icfg().getMethodOf(callSite)), Lists.newLinkedList());
 			}
+
+			@Override
+			public void unevaluableConstraint(ISLConstraint con, StmtWithMethod unit) {
+				cryptoScanner.getAnalysisListener().unevaluableConstraint(AnalysisSeedWithSpecification.this, con, unit);
+			}
 		});
 		cryptoScanner.getAnalysisListener().checkedConstraints(this,constraintSolver.getRelConstraints());
 		internalConstraintSatisfied = (0 == constraintSolver.evaluateRelConstraints());
@@ -371,7 +376,11 @@ public class AnalysisSeedWithSpecification extends IAnalysisSeed {
 		for (CryptSLPredicate rem : Lists.newArrayList(remainingPredicates)) {
 			final ISLConstraint conditional = rem.getConstraint();
 			if (conditional != null) {
-				if (constraintSolver.evaluate(conditional) != null) {
+				try {
+					if (constraintSolver.evaluate(conditional) != null) {
+						remainingPredicates.remove(rem);
+					}
+				} catch (UnevaluableConstraintException e) {
 					remainingPredicates.remove(rem);
 				}
 			}

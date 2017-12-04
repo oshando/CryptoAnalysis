@@ -56,5 +56,10 @@ public class CryptSLComparisonConstraint extends CryptSLLiteral implements java.
 		varNames.addAll(right.getInvolvedVarNames());
 		return varNames;
 	}
+
+	@Override
+	public String getName() {
+		return toString();
+	}
 	
 }

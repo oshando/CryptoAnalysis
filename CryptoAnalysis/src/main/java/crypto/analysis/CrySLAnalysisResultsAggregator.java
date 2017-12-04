@@ -3,7 +3,6 @@ package crypto.analysis;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +21,6 @@ import crypto.rules.CryptSLPredicate;
 import crypto.rules.StateNode;
 import crypto.typestate.CallSiteWithParamIndex;
 import crypto.typestate.CryptoTypestateAnaylsisProblem.AdditionalBoomerangQuery;
-import crypto.typestate.ErrorStateNode;
 import heros.InterproceduralCFG;
 import ideal.AnalysisSolver;
 import ideal.FactAtStatement;
@@ -152,6 +150,10 @@ public class CrySLAnalysisResultsAggregator implements ResultReporter<TypestateD
 	public void constraintViolation(AnalysisSeedWithSpecification analysisSeedWithSpecification, ISLConstraint con, StmtWithMethod unit) {
 		internalConstraintViolations.put(analysisSeedWithSpecification, con);
 		crr.constraintViolation(analysisSeedWithSpecification, con, unit);
+	}
+	
+	public void unevaluableConstraint(AnalysisSeedWithSpecification seed, ISLConstraint con, StmtWithMethod location) {
+		crr.unevaluableConstraint(seed, con, location);
 	}
 
 	public Multimap<AnalysisSeedWithSpecification, ISLConstraint> getCheckedConstraints() {

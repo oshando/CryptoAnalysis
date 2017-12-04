@@ -247,6 +247,11 @@ public abstract class UsagePatternTestingFramework extends AbstractTestingFramew
 								
 							}
 
+							@Override
+							public void unevaluableConstraint(AnalysisSeedWithSpecification seed, ISLConstraint con, StmtWithMethod location) {
+								
+							}
+
 						};
 						CrySLAnalysisResultsAggregator reporters = new CrySLAnalysisResultsAggregator(icfg, ideVizFile);
 						reporters.addReportListener(cryslListener);
